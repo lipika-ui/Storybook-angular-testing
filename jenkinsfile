@@ -1,0 +1,14 @@
+properties([pipelineTriggers([githubPush()])])
+pipeline{
+    agent any
+    tools {nodejs "node"}
+environment {
+        CHROME_BIN = '/bin/google-chrome'
+    }
+    stages {
+    stage('git Checkout')
+    {
+        steps {
+            git branch: 'jenkins-lla-latest', credentialsId: '2645a18f-c371-4d0a-808b-47e124cd7493', url: 'https://github.com/LLA-io/LLA-monorepo.git'
+        }
+    }
